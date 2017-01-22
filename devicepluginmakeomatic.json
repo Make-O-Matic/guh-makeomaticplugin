@@ -2,6 +2,26 @@
     "name": "Make-O-Matic",
     "idName": "MakeOMatic",
     "id": "b7fc7712-e85a-4d33-8d4e-6e22c6201151",
+    "paramtypes": [
+	    {
+			"id": "1f8016b9-0854-4521-8d24-b46d180e5299",
+			"idName": "macright",
+			"name": "right MAC address",
+			"type": "QString",
+			"index": 0,
+			"inputType": "MacAddress",
+			"defaultValue": ""
+		},
+		{
+			"id": "b63f5413-c8ee-43bc-b22a-28caece2a35c",
+			"idName": "macleft",
+			"name": "left MAC address",
+			"type": "QString",
+			"index": 1,
+			"inputType": "MacAddress",
+			"defaultValue": ""
+		}
+    ],
     "vendors": [
         {
             "name": "Make-O-Matic",
