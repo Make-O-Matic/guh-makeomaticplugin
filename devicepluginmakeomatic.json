@@ -2,24 +2,24 @@
     "name": "Make-O-Matic",
     "idName": "MakeOMatic",
     "id": "b7fc7712-e85a-4d33-8d4e-6e22c6201151",
-    "paramtypes": [
+    "paramTypes": [
 	    {
 			"id": "1f8016b9-0854-4521-8d24-b46d180e5299",
-			"idName": "macright",
-			"name": "right MAC address",
+            "idName": "leftMAC",
+            "name": "left MAC address",
 			"type": "QString",
 			"index": 0,
 			"inputType": "MacAddress",
-			"defaultValue": ""
+			"defaultValue": "00:06:66:4F:B8:76"
 		},
 		{
 			"id": "b63f5413-c8ee-43bc-b22a-28caece2a35c",
-			"idName": "macleft",
-			"name": "left MAC address",
+            "idName": "rightMAC",
+            "name": "right MAC address",
 			"type": "QString",
 			"index": 1,
 			"inputType": "MacAddress",
-			"defaultValue": ""
+			"defaultValue": "00:06:66:4F:B7:7B"
 		}
     ],
     "vendors": [
@@ -30,7 +30,7 @@
             "deviceClasses": [
                 {
                     "name": "Glove (train)",
-                    "idName": "glovetrain",
+                    "idName": "gloveTrain",
                     "id": "b796b163-3f6c-4604-bcb9-327b2e5955c9",
                     "createMethods": ["user"],
                     "basicTags": [
@@ -39,7 +39,7 @@
                     "paramTypes": [
                         {
                             "id": "8e040d1d-0796-4d1d-80d4-740dde0f82c6",
-                            "idName": "name",
+                            "idName": "gloveName",
                             "name": "name",
                             "type": "QString",
                             "defaultValue": "-",
@@ -58,7 +58,7 @@
                     "paramTypes": [
                         {
                             "id": "8a820428-d95b-46ef-8c34-ec71f03f5e8d",
-                            "idName": "name",
+                            "idName": "gloveTrainName",
                             "name": "name",
                             "type": "QString",
                             "defaultValue": "-",

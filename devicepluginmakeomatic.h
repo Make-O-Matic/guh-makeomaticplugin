@@ -6,7 +6,6 @@
 #include <QSharedPointer>
 #include "plugin/deviceplugin.h"
 #include "devicemanager.h"
-//#include "bt/"
 #include "glove.h"
 
 class DevicePluginMakeOMatic : public DevicePlugin

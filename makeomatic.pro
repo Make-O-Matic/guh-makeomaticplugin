@@ -3,7 +3,7 @@ TRANSLATIONS = translations/en_US.ts \
 
 include(plugins.pri)
 QT += bluetooth
-TARGET = guh_devicepluginmakeomatic
+TARGET = $$qtLibraryTarget(guh_devicepluginmakeomatic)
 
 message(============================================)
 message("Qt version: $$[QT_VERSION]")

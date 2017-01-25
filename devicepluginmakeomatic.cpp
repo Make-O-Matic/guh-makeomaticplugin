@@ -30,6 +30,15 @@ DevicePluginMakeOMatic::DevicePluginMakeOMatic()
 
 }
 
+/* This method will be called from the devicemanager to get
+ * information about this plugin which device resource will be needed.
+ */
+DeviceManager::HardwareResources DevicePluginMakeOMatic::requiredHardware() const
+{
+    return DeviceManager::HardwareResourceNone;
+}
+
+
 /* This method will be called from the devicemanager while he
  * is setting up a new device. Here the developer has the chance to
  * perform the setup on the actual device and report the result.
