@@ -18,10 +18,10 @@
 */
 
 #include <QSharedPointer>
-#include <QBluetoothDeviceInfo>
-#include <QBluetoothSocket>
+#include <QVariant>
 #include "plugininfo.h"
 #include "devicemanager.h"
+#include "glove.h"
 #include "devicepluginmakeomatic.h"
 
 /* The constructor of this device plugin. */
@@ -48,20 +48,32 @@ DeviceManager::DeviceSetupStatus DevicePluginMakeOMatic::setupDevice(Device *dev
     qCDebug(dcMakeOMatic) << "Setting up" << device->name() << device->params();
 
     if (device->deviceClassId() == gloveDeviceClassId) {
-        auto leftAddress = QBluetoothAddress(configValue(leftMACParamTypeId).toString());
-        auto rightAddress = QBluetoothAddress(configValue(rightMACParamTypeId).toString());
-        auto name = device->paramValue(gloveNameParamTypeId).toString();
-        auto leftInfo = QBluetoothDeviceInfo(leftAddress, name, 0);
-        auto rightInfo = QBluetoothDeviceInfo(rightAddress, name, 0);
-        
-        QSharedPointer<Glove> glove{new Glove(leftInfo, rightInfo, this)};
+        QSharedPointer<Glove> glove{new Glove(configValue(leftMACParamTypeId).toString(),
+                                              configValue(rightMACParamTypeId).toString(),
+                                              device->paramValue(gloveNameParamTypeId).toString(),
+                                              [device](){ return device->stateValue(recordingStateTypeId).toBool(); }, this)};
+        connect(glove.data(), &Glove::connectionChanged, this,
+                [device, this](QVariant state){ setConnectedState(device, state); });
+
         m_devices.insert(glove, device);
 
-        glove->connect();
+        glove->connectDevice();
 
-        return DeviceManager::DeviceSetupStatusSuccess;
+        return DeviceManager::DeviceSetupStatusAsync;
     }
     return DeviceManager::DeviceSetupStatusFailure;
+}
+
+DeviceManager::DeviceError DevicePluginMakeOMatic::executeAction(Device *device, const Action &action)
+{
+    if (device->deviceClassId() == gloveDeviceClassId) {
+        if (action.actionTypeId() == recordingActionTypeId) {
+                device->setStateValue(recordingStateTypeId, action.param(recordingStateParamTypeId).value().toBool());
+//db
+            return DeviceManager::DeviceErrorNoError;
+        }
+    }
+    return DeviceManager::DeviceErrorNoError;
 }
 
 void DevicePluginMakeOMatic::deviceRemoved(Device *device)
@@ -72,5 +84,12 @@ void DevicePluginMakeOMatic::deviceRemoved(Device *device)
     auto glove = m_devices.key(device);
 
     m_devices.remove(glove);
+}
+
+void DevicePluginMakeOMatic::setConnectedState(Device *device, QVariant state)
+{
+    device->setStateValue(connectedStateTypeId, state);
+    if (!device->setupComplete())
+        emit deviceSetupFinished(device, DeviceManager::DeviceSetupStatusSuccess);
 }
 

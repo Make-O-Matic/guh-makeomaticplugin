@@ -43,7 +43,7 @@
                             "name": "name",
                             "type": "QString",
                             "defaultValue": "-",
-                            "index" : 0
+                            "index": 0
                         }
                     ]
                 },
@@ -62,7 +62,35 @@
                             "name": "name",
                             "type": "QString",
                             "defaultValue": "-",
-                            "index" : 0
+                            "index": 0
+                        }
+                    ],
+                    "stateTypes": [
+                        {
+                            "id": "8f4aa5f5-e609-43c9-baaf-184d5583f53b",
+                            "idName": "connected",
+                            "name": "connected",
+                            "eventTypeName": "connection changed",
+                            "index": 0,
+                            "type": "UserType",
+                            "defaultValue": false,
+                            "possibleValues" : [
+                                "none",
+                                "left",
+                                "right",
+                                "both"
+                            ]
+                        },
+                        {
+                            "id": "65daba61-29bb-498a-b699-737873fdff28",
+                            "idName": "recording",
+                            "name": "recording",
+                            "writable": true,
+                            "actionTypeName": "Start/stop recording",
+                            "eventTypeName": "start/stop recording",
+                            "index": 1,
+                            "type": "bool",
+                            "defaultValue": false
                         }
                     ]
                 }               

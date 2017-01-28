@@ -4,6 +4,7 @@
 #include <QHash>
 #include <QPointer>
 #include <QSharedPointer>
+#include <QVariant>
 #include "plugin/deviceplugin.h"
 #include "devicemanager.h"
 #include "glove.h"
@@ -19,9 +20,12 @@ public:
     
     DeviceManager::HardwareResources requiredHardware() const override;
     DeviceManager::DeviceSetupStatus setupDevice(Device *device) override;
+    DeviceManager::DeviceError executeAction(Device *device, const Action &action) override;
     void deviceRemoved(Device *device) override;
 
 private:
+    void setConnectedState(Device *device, QVariant state);
+
     QHash<QSharedPointer<Glove>, QPointer<Device>> m_devices;
 };
 
