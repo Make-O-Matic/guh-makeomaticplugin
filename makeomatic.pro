@@ -11,8 +11,11 @@ message("Building $$deviceplugin$${TARGET}.so")
 
 SOURCES += \
     devicepluginmakeomatic.cpp \
-    glove.cpp
+    glove.cpp \
+    cobs/cobs.c
 
 HEADERS += \
     devicepluginmakeomatic.h \
-    glove.h
+    glove.h \
+    packet.h \
+    cobs/cobs.h

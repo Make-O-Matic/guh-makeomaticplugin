@@ -73,7 +73,7 @@
                             "eventTypeName": "connection changed",
                             "index": 0,
                             "type": "UserType",
-                            "defaultValue": false,
+                            "defaultValue": "none",
                             "possibleValues" : [
                                 "none",
                                 "left",
