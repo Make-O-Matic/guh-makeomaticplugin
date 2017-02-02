@@ -45,12 +45,13 @@ DeviceManager::HardwareResources DevicePluginMakeOMatic::requiredHardware() cons
  */
 DeviceManager::DeviceSetupStatus DevicePluginMakeOMatic::setupDevice(Device *device)
 {
-    qCDebug(dcMakeOMatic) << "Setting up" << device->name() << device->params();
+    qCDebug(dcMakeOMatic) << "Setting up" << device->name() << device->params()
+                          << configuration();
 
     if (device->deviceClassId() == gloveDeviceClassId) {
-        QSharedPointer<Glove> glove{new Glove(configValue(leftMACParamTypeId).toString(),
+        QSharedPointer<Glove> glove{new Glove(device->paramValue(gloveNameParamTypeId).toString(),
+                                              configValue(leftMACParamTypeId).toString(),
                                               configValue(rightMACParamTypeId).toString(),
-                                              device->paramValue(gloveNameParamTypeId).toString(),
                                               [device](){ return device->stateValue(recordingStateTypeId).toBool(); }, this)};
         connect(glove.data(), &Glove::connectionChanged, this,
                 [device, this](QVariant state){ setConnectedState(device, state); });
@@ -89,7 +90,8 @@ void DevicePluginMakeOMatic::deviceRemoved(Device *device)
 void DevicePluginMakeOMatic::setConnectedState(Device *device, QVariant state)
 {
     device->setStateValue(connectedStateTypeId, state);
-    if (!device->setupComplete())
+    qCDebug(dcMakeOMatic) << state.toString() << "state";
+    if (state.toString() == "both" && !device->setupComplete())
         emit deviceSetupFinished(device, DeviceManager::DeviceSetupStatusSuccess);
 }
 

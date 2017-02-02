@@ -19,7 +19,7 @@
 			"type": "QString",
 			"index": 1,
 			"inputType": "MacAddress",
-			"defaultValue": "00:06:66:4F:B7:7B"
+            "defaultValue": "00:06:66:4F:B7:7B"
 		}
     ],
     "vendors": [
@@ -39,7 +39,7 @@
                     "paramTypes": [
                         {
                             "id": "8e040d1d-0796-4d1d-80d4-740dde0f82c6",
-                            "idName": "gloveName",
+                            "idName": "gloveTrainName",
                             "name": "name",
                             "type": "QString",
                             "defaultValue": "-",
@@ -58,7 +58,7 @@
                     "paramTypes": [
                         {
                             "id": "8a820428-d95b-46ef-8c34-ec71f03f5e8d",
-                            "idName": "gloveTrainName",
+                            "idName": "gloveName",
                             "name": "name",
                             "type": "QString",
                             "defaultValue": "-",

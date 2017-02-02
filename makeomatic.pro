@@ -2,7 +2,12 @@ TRANSLATIONS = translations/en_US.ts \
                translations/de_DE.ts
 
 include(plugins.pri)
+
+CONFIG += link_pkgconfig
+PKGCONFIG += libmongocxx
+
 QT += bluetooth
+
 TARGET = $$qtLibraryTarget(guh_devicepluginmakeomatic)
 
 message(============================================)
