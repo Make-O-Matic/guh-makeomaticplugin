@@ -56,14 +56,6 @@
                         "Device"
                     ],
                     "paramTypes": [
-                        {
-                            "id": "8a820428-d95b-46ef-8c34-ec71f03f5e8d",
-                            "idName": "gloveName",
-                            "name": "name",
-                            "type": "QString",
-                            "defaultValue": "-",
-                            "index": 0
-                        }
                     ],
                     "stateTypes": [
                         {
@@ -91,6 +83,17 @@
                             "index": 1,
                             "type": "bool",
                             "defaultValue": false
+                        },
+                        {
+                            "id": "3b2ca689-c3d2-48c0-95a4-e415804b7c38",
+                            "idName": "mutation",
+                            "name": "mutation",
+                            "writable": true,
+                            "actionTypeName": "Set mutation",
+                            "eventTypeName": "mutation changed",
+                            "index": 2,
+                            "type": "QString",
+                            "defaultValue": ""
                         }
                     ]
                 }               

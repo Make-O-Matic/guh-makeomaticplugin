@@ -49,7 +49,7 @@ DeviceManager::DeviceSetupStatus DevicePluginMakeOMatic::setupDevice(Device *dev
                           << configuration();
 
     if (device->deviceClassId() == gloveDeviceClassId) {
-        QSharedPointer<Glove> glove{new Glove(device->paramValue(gloveNameParamTypeId).toString(),
+        QSharedPointer<Glove> glove{new Glove(device->name(),
                                               configValue(leftMACParamTypeId).toString(),
                                               configValue(rightMACParamTypeId).toString(),
                                               [device](){ return device->stateValue(recordingStateTypeId).toBool(); }, this)};
@@ -69,9 +69,11 @@ DeviceManager::DeviceError DevicePluginMakeOMatic::executeAction(Device *device,
 {
     if (device->deviceClassId() == gloveDeviceClassId) {
         if (action.actionTypeId() == recordingActionTypeId) {
-                device->setStateValue(recordingStateTypeId, action.param(recordingStateParamTypeId).value().toBool());
+            device->setStateValue(recordingStateTypeId, action.param(recordingStateParamTypeId).value().toBool());
 //db
             return DeviceManager::DeviceErrorNoError;
+        } else if (action.actionTypeId() == mutationActionTypeId) {
+
         }
     }
     return DeviceManager::DeviceErrorNoError;
