@@ -1,13 +1,13 @@
 #ifndef DEVICEPLUGINMAKEOMATIC_H
 #define DEVICEPLUGINMAKEOMATIC_H
-
+#include "glove/glove.h"
 #include <QHash>
 #include <QPointer>
 #include <QSharedPointer>
 #include <QVariant>
 #include "plugin/deviceplugin.h"
 #include "devicemanager.h"
-#include "glove.h"
+//#include "glove/glove.h"
 
 class DevicePluginMakeOMatic : public DevicePlugin
 {

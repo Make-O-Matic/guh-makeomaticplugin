@@ -4,9 +4,10 @@ TRANSLATIONS = translations/en_US.ts \
 include(plugins.pri)
 
 CONFIG += link_pkgconfig
-PKGCONFIG += libmongocxx
+PKGCONFIG += libmongocxx glibmm-2.4 giomm-2.4
+LIBS += -lboost_system
 
-QT += bluetooth
+QT +=
 
 TARGET = $$qtLibraryTarget(guh_devicepluginmakeomatic)
 

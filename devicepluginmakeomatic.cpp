@@ -16,12 +16,12 @@
 
 	\quotefile plugins/deviceplugins/multisensor/devicepluginmultisensor.json
 */
-
+#include "glove/glove.h"
 #include <QSharedPointer>
 #include <QVariant>
 #include "plugininfo.h"
 #include "devicemanager.h"
-#include "glove.h"
+//#include "glove.h"
 #include "devicepluginmakeomatic.h"
 
 /* The constructor of this device plugin. */
@@ -49,12 +49,11 @@ DeviceManager::DeviceSetupStatus DevicePluginMakeOMatic::setupDevice(Device *dev
                           << configuration();
 
     if (device->deviceClassId() == gloveDeviceClassId) {
-        QSharedPointer<Glove> glove{new Glove(device->name(),
-                                              configValue(leftMACParamTypeId).toString(),
-                                              configValue(rightMACParamTypeId).toString(),
-                                              [device](){ return device->stateValue(recordingStateTypeId).toBool(); }, this)};
-        connect(glove.data(), &Glove::connectionChanged, this,
-                [device, this](QVariant state){ setConnectedState(device, state); });
+        QSharedPointer<Glove> glove{new Glove(configValue(leftMACParamTypeId).toString().toStdString(),
+                                              configValue(rightMACParamTypeId).toString().toStdString(),
+                                              [device](){ return device->stateValue(recordingStateTypeId).toBool(); })};
+        //connect(glove.data(), &Glove::connectionChanged, this,
+        //        [device, this](QVariant state){ setConnectedState(device, state); });
 
         m_devices.insert(glove, device);
 
